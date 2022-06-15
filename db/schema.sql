@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS faim_db;
+
+CREATE DATABASE faim_db;
