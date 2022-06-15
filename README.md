@@ -7,7 +7,7 @@
 ```md
 AS A User
 I WANT to be able to create an account&profile
-SO THAT I can chat with other people using a instant messaging app
+SO THAT I can chat with other people using an instant messaging app
 ```
 
 ## Acceptance Criteria
