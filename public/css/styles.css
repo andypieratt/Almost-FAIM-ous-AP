@@ -111,6 +111,22 @@ main {
 
 h1 { margin: 0; }
 
+.img-icon {
+    width: 5rem;
+}
+
+.desktop-icons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    font-size: .65rem;
+    color: #ffffff;
+}
+
+span {
+    margin-left: 1.5rem;
+}
+
 img {
   width: 80%;
   height: auto;
