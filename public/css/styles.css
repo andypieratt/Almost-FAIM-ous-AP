@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Windows 95';
+    src: url('../fonts/w-95-sans-serif.woff2') format('woff2'),
+        url('../fonts/w-95-sans-serif.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 html,body{
   margin: 0;
@@ -10,6 +17,7 @@ body {
   background: url('https://filmdaily.co/wp-content/uploads/2021/02/Bliss-lede.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
+  font-family: 'Windows 95', cursive;
 }
 
 .container {
@@ -52,21 +60,42 @@ body {
   
 }
 
-.forms {
+/* .forms {
     position: relative;
     justify-content: center;
     align-items: center;
-}
+} */
 
 main {
   padding: 10px 0;
-  background: #222;
+  background: rgb(255, 255, 255);
   text-align: center;
-  color: aqua;
+  color: rgb(0, 0, 0);
   height: 100%;
   overflow: auto;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
+
+.btn-info {
+    color: #ffffff;
+    background-color: #c0c0c0;
+    border-color: #c0c0c0;
+    font-family: 'Windows 95', cursive;
+}
+
+.btn-info:hover {
+    color: #ffffff;
+    background-color: #787878;
+    border-color: #787878;
+}
+
+.form-group-input:before {
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background: #000000;
+}
+
 
 /* .couldnt-do-this-in-the-90s {
   display: flex;
