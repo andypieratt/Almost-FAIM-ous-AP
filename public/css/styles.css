@@ -77,10 +77,15 @@ main {
 }
 
 .chat {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items:center;
-    float: inline-end;
+    float: inline-end; */
+    border-style: inset;
+    border: 5px, black;
+    height: 50%;
+    margin-bottom: 5rem;
+    margin: 5%;
 }
 
 .btn-info {
@@ -88,6 +93,10 @@ main {
     background-color: #c0c0c0;
     border-color: #c0c0c0;
     font-family: 'Windows 95', cursive;
+}
+
+#btn-send {
+    
 }
 
 .btn-info:hover {
@@ -116,8 +125,10 @@ main {
   }
 } */
 
-textarea[resize="both"] {
-    resize: both !important;
+textarea {
+    /* resize: both !important; */
+    height: 5%;
+    width: 90%;
 }
 
 h1 { margin: 0; }
@@ -178,4 +189,14 @@ a {
   width: 20px;
   height: 20px;
   cursor: nw-resize !important;
+}
+
+.outgoing-user {
+color: blue;
+font-family: 'Windows 95', cursive;
+}
+
+.incoming-user {
+    color: red;
+    font-family: 'Windows 95', cursive;
 }
