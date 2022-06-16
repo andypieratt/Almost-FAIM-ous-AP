@@ -43,20 +43,20 @@
             </div>
             <p>Throwback 90's style instant messaging!</p>
 
-            <form>
-                <!-- Email input -->
-                <div>
-                    <input class="form-group-input" type="email" /><br />
-                    <label class="form-label" for="form2Example1">Email</label>
-                </div>
-                <!-- Password input -->
-                <div class="form-group-input">
-                    <input type="password" id="form2Example2" class="form-control" /><br />
-                    <label class="form-label" for="form2Example2">Password</label>
-                </div>
-
-                <!-- 2 column grid layout for inline styling -->
-                <!-- <div class="row mb-4">
+          <form id="login-form">
+            <!-- Email input -->
+            <div >
+              <input id="email" class="form-group-input" type="email" /><br>
+              <label class="form-label" for="form2Example1">Email</label>
+            </div>
+            <!-- Password input -->
+            <div class="form-group-input">
+              <input type="password" id="password" class="form-control" /><br>
+              <label class="form-label" for="form2Example2">Password</label>
+            </div>
+          
+            <!-- 2 column grid layout for inline styling -->
+            <!-- <div class="row mb-4">
               <div class="col d-flex justify-content-center"> -->
                 <!-- Checkbox -->
                 <!-- <div class="form-check">
@@ -70,19 +70,18 @@
                 <!-- <a href="#!">Forgot password?</a>
               </div>
             </div> -->
-
-                <!-- Submit button -->
-                <button type="button" class="btn btn-info">Sign in</button>
-                <div class="text-center"></div>
-                <!-- Register buttons -->
-                <div class="text-center">
-                    <p>
-                        Not a member?
-                        <button type="button" class="btn btn-info">Register</button>
-                    </p>
-                </div>
-            </form>
-            <!-- <table>
+          
+            <!-- Submit button -->
+            <button type="button" id="login-form" class="btn btn-info">Sign in</button>
+            <div class="text-center">
+                
+              </div>
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Not a member? <button type="button" class="btn btn-info">Register</button></p>
+            </div>
+          </form>
+          <!-- <table>
             <tr><td>When:</td><td>6PM Tue, <strong>5th September</strong></td></tr>
             <tr><td>Where:</td><td>Campaign Monitor</td></tr>
             <tr><td>Cost:</td><td>Free!!!</td></tr>
@@ -91,7 +90,9 @@
             <!-- <p>Follow us <a target="_blank"   href="https://twitter.com/codebarSyd">@codebarSyd</a>, RSVP at <a target="_blank" href="http://codebar.io/workshops/537">codebar.io/workshops/537</a></p>
           <img  width="600px" height="240px"  src="http://www.lottejackson.com/assets/images/codebar/banner.jpg" alt="people learning to code"> -->
         </main>
-    </div>
+      
+      <script src="./public/js/login.js"></script>
+      </div>
 </body>
 
 </html>
