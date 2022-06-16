@@ -7,7 +7,7 @@ const userRoutes = require("./user-routes.js");
 //MIDDLEWARE
 router.use("/user", userRoutes);
 // router.use("/messages", messageRoutes);
-// router.use("/convo", convoRoutes);
+// router.use("/convos", convoRoutes);
 
 //EXPORT
 module.exports = router;
