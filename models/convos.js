@@ -11,20 +11,20 @@ Convos.init(
       autoIncrement: true,
       allowNull: false,
     },
-    body: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        type: DataTypes.INTEGER,
-        references: {
-          model: "User",
-          key: "id",
-        },
-      },
-    },
+    // body: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
+    // user_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     type: DataTypes.INTEGER,
+    //       model: "User",
+    //     references: {
+    //       key: "id",
+    //     },
+    //   },
+    // },
   },
   {
     sequelize,
