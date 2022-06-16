@@ -20,7 +20,7 @@ Convos.init(
       references: {
         type: DataTypes.INTEGER,
         references: {
-          model: "user",
+          model: "User",
           key: "id",
         },
       },
@@ -31,7 +31,7 @@ Convos.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "convos",
+    modelName: "Convos",
   }
 );
 
