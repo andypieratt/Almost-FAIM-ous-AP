@@ -1,4 +1,4 @@
-const loginFormHandler = async function(event) {
+const loginFormHandler = async function (event) {
   event.preventDefault();
 
   const emailEl = document.querySelector('#email');
@@ -15,25 +15,27 @@ const loginFormHandler = async function(event) {
     headers: { 'Content-Type': 'application/json' },
   });
 
- if (email === "") {
-    displayMessage("error", "Email cannot be blank");
-  } else if (password === "") {
-    displayMessage("error", "Password cannot be blank");
- } else if (username === "") {
-   displayMessage("Username cannot be blank")
- }
- else {
+  // if (email === "") {
+  //   displayMessage("error", "Email cannot be blank");
+  // }
+  //  if (password === "") {
+  //   displayMessage("error", "Password cannot be blank");
+  //  }
+  if ((username === "") || (password === "") || (email === "")) {
+    displayMessage("Required fields cannot be blank.")
+  }
+  else {
     displayMessage("success", "Registered successfully");
 
 
 
-  // if (response.ok) {
-  //   console.log("SUCCESS")
-//     document.location.replace('/dashboard');
-//   } else {
-//     alert('Failed to login');
-//   }
-}
+    if (response.ok) {
+      console.log("SUCCESS")
+        document.location.replace('/dashboard');
+      } else {
+        alert('Failed to login');
+      }
+  }
 };
 document
   .querySelector('#login-form')
