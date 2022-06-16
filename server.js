@@ -1,20 +1,18 @@
 //VARIABLES
 const path = require("path");
-const http = require("http")
 const express = require("express");
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const helpers = require("./utils/helper.js");
 const sequelize = require("./config/connection");
-const socketio = require("socket.io")
+const socket = require("socket.io")
 
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
-const server = http.createServer(app)
-const io = socket.io(server)
+const io = socket()
 const PORT = process.env.PORT || 3001;
 
 //run when user login
@@ -30,6 +28,11 @@ io.on('connected', socket => {
   //Run on user logout
   socket.on('disconnect', () => {
     io.emit('message', 'A user has left the chat')
+
+  })
+  //Listen for message
+  socket.on('chatMessage', (chat) => {
+    console.log(chat);
   })
 })
 
@@ -60,7 +63,7 @@ app.use(routes);
 
 //LISTENING
 sequelize.sync({ force: true }).then(() => {
-  server.listen(PORT, () =>
+  app.listen(PORT, () =>
     console.log(`Now listening http://localhost:${PORT}/`)
   );
 });

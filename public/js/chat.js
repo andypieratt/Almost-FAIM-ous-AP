@@ -10,5 +10,10 @@ socket.on('message', message => {
 messageBox.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const chat = event.target.elements.chat
-})
+    //Get message text
+    const chat = event.target.elements.chat.value;
+
+    //Emite mesage to the server
+    console.log(chat)
+    socket.emit('chatMessage', chat)
+}) 
