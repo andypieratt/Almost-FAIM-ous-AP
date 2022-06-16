@@ -1,16 +1,25 @@
 const loginFormHandler = async function (event) {
   event.preventDefault();
 
+  // const usernameEL = document.querySelector('#username');
   const emailEl = document.querySelector('#email');
   const passwordEl = document.querySelector('#password');
-  const usernameEL = document.querySelector('#username');
+  
+  function displayMessage(){
+    console.log({email, passwordEl})
+    if(!emailEl.value || !passwordEl.value){
+      alert("Required fields cannot be blank")
+    } else {
+      alert("Login Succesful!")
+    }
+  }
 
-  const response = await fetch('/api/user/login', {
+  const response = fetch('/api/user/login', {
     method: 'POST',
     body: JSON.stringify({
-      username: emailEl.value,
+      email: emailEl.value,
       password: passwordEl.value,
-      username: usernameEL.value,
+      // username: usernameEL.value,
     }),
     headers: { 'Content-Type': 'application/json' },
   });
@@ -21,22 +30,17 @@ const loginFormHandler = async function (event) {
   //  if (password === "") {
   //   displayMessage("error", "Password cannot be blank");
   //  }
-  if ((username === "") || (password === "") || (email === "")) {
-    displayMessage("Required fields cannot be blank.")
-  }
-  else {
-    displayMessage("success", "Registered successfully");
+ 
+  displayMessage()
 
-
-
-    if (response.ok) {
+  if (response.ok) {
       console.log("SUCCESS")
         document.location.replace('/dashboard');
       } else {
         alert('Failed to login');
       }
-  }
-};
+  };
+
 document
-  .querySelector('#login-form')
-  .addEventListener('submit', loginFormHandler);
+  .querySelector('#submit-button')
+  .addEventListener('click', loginFormHandler);
