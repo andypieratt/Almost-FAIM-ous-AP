@@ -1,3 +1,4 @@
+console.log('login.js is loaded')
 const loginFormHandler = async function (event) {
   event.preventDefault();
 
@@ -35,7 +36,7 @@ const loginFormHandler = async function (event) {
 
   if (response.ok) {
       console.log("SUCCESS")
-        document.location.replace('/dashboard');
+        document.location.replace('/chat');
       } else {
         alert('Failed to login');
       }
