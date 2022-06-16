@@ -6,12 +6,35 @@ const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const helpers = require("./utils/helper.js");
 const sequelize = require("./config/connection");
+const socket = require("socket.io")
 
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
+const io = socket()
 const PORT = process.env.PORT || 3001;
+
+//run when user login
+io.on('connected', socket => {
+  console.log("New server connection")
+
+  //Welcome user message
+  socket.emit('message', 'Welcome to fAIM!')
+
+  //Let users know when other user connects
+  socket.broadcast.emit('message', 'Another user has joined the chat');
+
+  //Run on user logout
+  socket.on('disconnect', () => {
+    io.emit('message', 'A user has left the chat')
+
+  })
+  //Listen for message
+  socket.on('chatMessage', (chat) => {
+    console.log(chat);
+  })
+})
 
 const hbs = exphbs.create({ helpers });
 
