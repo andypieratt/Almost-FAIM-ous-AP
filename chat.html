@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Almost fAIMous</title>
+    <title>Almost fAIMous Chat</title>
     <link rel="stylesheet" href="./public/css/styles.css" />
 </head>
 
@@ -30,33 +30,15 @@
     
     <div class="container browser-frame center">
         <div id="drag-handle"></div>
-        <main class="content">
-            <div class="couldnt-do-this-in-the-90s">
-                <h1>LOGIN</h1>
+        <main>
+            <div class="chat">
+                <textarea name="chat" id="" cols="30" rows="10"></textarea>
             </div>
-            <p>Throwback 90's style instant messaging!</p>
-
-          <form id="login-form">
-            <!-- Email input -->
-            <div >
-              <input id="email" class="form-group-input" type="email" /><br>
-              <label class="form-label" for="form2Example1">Email</label>
-            </div>
-            <!-- Password input -->
-            <div class="form-group-input">
-              <input type="password" id="password" class="form-control" /><br>
-              <label class="form-label" for="form2Example2">Password</label>
-            </div>
-            <!-- Submit button -->
-            <button type="button" id="submit-button" class="btn btn-info">Sign in</button>
+            <!-- Send button -->
+            <button type="button" id="login-form" class="btn btn-info">Send</button>
             <div class="text-center">
                 
               </div>
-            <!-- Register buttons -->
-            <div class="text-center">
-              <p>Not a member? <button type="button" class="btn btn-info">Register</button></p>
-            </div>
-          </form>
         </main>
       
       <script src="./public/js/login.js"></script>
