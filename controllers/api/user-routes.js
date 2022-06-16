@@ -2,13 +2,12 @@ const router = require("express").Router();
 const { User } = require("../../models");
 
 router.get("/", async (req, res) => {
-    const user = await User.findAll()
-    res.status(200).json(user)
-})
-
+  const user = await User.findAll();
+  res.status(200).json(user);
+});
 
 router.post("/", async (req, res) => {
-    console.log("hello world")
+  console.log("hello world");
   try {
     const newUser = await User.create({
       username: req.body.username,
@@ -21,16 +20,14 @@ router.post("/", async (req, res) => {
       req.session.userId = newUser.id;
       req.session.username = newUser.username;
       req.session.loggedIn = true;
-      req.session.password = newUser.password
-      req.session.email = newUser.email
-      
-        
+      req.session.password = newUser.password;
+      req.session.email = newUser.email;
+
       res.json(newUser);
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).json(err);
-
   }
 });
 

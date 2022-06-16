@@ -18,7 +18,7 @@ Messages.init(
     convos_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "convos",
+        model: "Convos",
         key: "id",
       },
     },
@@ -28,7 +28,7 @@ Messages.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "messages",
+    modelName: "Messages",
   }
 );
 
