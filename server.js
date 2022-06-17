@@ -1,23 +1,32 @@
 //VARIABLES
 const path = require("path");
 const express = require("express");
+const app = express();
+const http = require('http');
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const helpers = require("./utils/helper.js");
 const sequelize = require("./config/connection");
-const socket = require("socket.io")
+// const socket = require("socket.io")
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+
 
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-const app = express();
-const io = socket()
+const io = new Server(server);
+// const io = socket()
 const PORT = process.env.PORT || 3001;
 
 //run when user login
-io.on('connected', socket => {
-  console.log("New server connection")
+// io.on('connected', socket => {
+//   console.log("New server connection")
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
 
   //Welcome user message
   socket.emit('message', 'Welcome to fAIM!')
@@ -63,7 +72,7 @@ app.use(routes);
 
 //LISTENING
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () =>
+  server.listen(PORT, () =>
     console.log(`Now listening http://localhost:${PORT}/`)
   );
 });
