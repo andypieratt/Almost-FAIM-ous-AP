@@ -11,11 +11,11 @@ const sequelize = require("./config/connection");
 // const socket = require("socket.io")
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-
+// const setupListeners = require("./public/js/chat.js")
 
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-
+let globalSocket = null
 const io = new Server(server);
 // const io = socket()
 const PORT = process.env.PORT || 3001;
@@ -24,9 +24,11 @@ const PORT = process.env.PORT || 3001;
 // io.on('connected', socket => {
 //   console.log("New server connection")
 
+//On new user join
 io.on('connection', (socket) => {
   console.log('a user connected');
-
+  // setupListeners(socket)
+  globalSocket = socket
 
   //Welcome user message
   socket.emit('message', 'Welcome to fAIM!')
@@ -40,7 +42,7 @@ io.on('connection', (socket) => {
 
   })
   //Listen for message
-  socket.on('chatMessage', (chat) => {
+  socket.on('message', (chat) => {
     console.log(chat);
   })
 })
@@ -76,3 +78,5 @@ sequelize.sync({ force: false }).then(() => {
     console.log(`Now listening http://localhost:${PORT}/`)
   );
 });
+
+module.exports = globalSocket
