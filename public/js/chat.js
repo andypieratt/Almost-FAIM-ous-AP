@@ -1,19 +1,24 @@
-const messageBox = document.getElementById("#message-thread")
-const chattingWith = document.getElementById("#chatting-with")
-const socket = io();
+
+const messageBox = document.getElementById("message-thread")
+const sendBtn = document.getElementById("submit")
+const chat = document.getElementById('chat').value
+
+// const socket = io()
+console.log(socket)
 
 socket.on('message', message => {
     console.log(message);
 })
 
 //Message form submission
-messageBox.addEventListener('submit', (event) => {
+sendBtn.addEventListener('click', (event) => {
     event.preventDefault();
 
     //Get message text
-    const chat = event.target.elements.chat.value;
-
-    //Emite mesage to the server
-    console.log(chat)
+    const chatData = event.target.chat
+    const chatMessage = JSON.stringify(chatData)
+    
+    //Emit mesage to the server
+    console.log(chatMessage)
     socket.emit('chatMessage', chat)
 }) 

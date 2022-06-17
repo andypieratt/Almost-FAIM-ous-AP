@@ -1,4 +1,7 @@
-<div class="desktop-icons">
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+</script><div class="desktop-icons">
         <div><a href="https://github.com/ruxpin86"><img src="/images/computericon.png" alt="desktop icon"
                     class="img-icon"></a>
             <figcaption> Ted</figcaption>
@@ -29,15 +32,16 @@
         <div id="drag-handle"></div>
         
         <main>
-        <span id="chatting-with" >You're chatting with  </span>
-            <div class="chat"> 
+        <span>You're chatting with </span>
+            <div id="message-thread" class="chat"> 
+
                 {{!-- RENDER CHATS HERE --}}
             </div>
             <div>
-                <textarea name="chat"></textarea>
+                <textarea id="chat" name="chat"></textarea>
             </div>
             <!-- Send button -->
-            <button type="button" id="btn-send" class="btn btn-info">Send</button>
+            <button type="submit" id="submit" class="btn btn-info">Send</button>
             <div class="text-center">
                 
             </div>
