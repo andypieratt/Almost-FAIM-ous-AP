@@ -14,11 +14,20 @@ html,body{
 }
 
 body {
-  background: url('https://filmdaily.co/wp-content/uploads/2021/02/Bliss-lede.jpg');
+  background: url('../images/Bliss-lede.jpg');
   background-repeat: no-repeat;
   background-size: 100%;
   font-family: 'Windows 95', cursive;
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
 
 .container {
   /* background: #222; */

@@ -1,5 +1,5 @@
-const messageBox = document.getElementById("message-thread")
-
+const messageBox = document.getElementById("#message-thread")
+const chattingWith = document.getElementById("#chatting-with")
 const socket = io();
 
 socket.on('message', message => {
