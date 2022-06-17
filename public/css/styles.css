@@ -20,6 +20,15 @@ body {
   font-family: 'Windows 95', cursive;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+
 .container {
   /* background: #222; */
   position: relative;
