@@ -71,4 +71,6 @@ router.post("/logout", (req, res) => {
   }
 });
 
+//delete user route
+
 module.exports = router;
