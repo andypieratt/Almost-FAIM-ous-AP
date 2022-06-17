@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
     const newUser = await User.create({
       username: req.body.username,
       password: req.body.password,
-      email: req.body.email,
+      // email: req.body.email,
     });
 
     req.session.save(() => {
@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
       req.session.username = newUser.username;
       req.session.loggedIn = true;
       req.session.password = newUser.password;
-      req.session.email = newUser.email;
+      // req.session.email = newUser.email;
 
       res.json(newUser);
     });
@@ -36,6 +36,9 @@ router.post("/login", async (req, res) => {
         username: req.body.username,
       },
     });
+    console.log("=============");
+    console.log(user);
+    console.log("=============");
 
     if (!user) {
       res.status(400).json({ message: "No user account found!" });
@@ -70,5 +73,7 @@ router.post("/logout", (req, res) => {
     res.status(404).end();
   }
 });
+
+//delete user route
 
 module.exports = router;
