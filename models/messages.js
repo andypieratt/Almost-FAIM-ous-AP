@@ -15,13 +15,13 @@ Messages.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    convos_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "Convos",
-        key: "id",
-      },
-    },
+    // convos_id: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: "Convos",
+    //     key: "id",
+    //   },
+    // },
   },
   {
     sequelize,

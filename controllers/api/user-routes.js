@@ -7,13 +7,11 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log("hello world");
   try {
     const newUser = await User.create({
       username: req.body.username,
       password: req.body.password,
       email: req.body.email,
-      uuid: req.body.uuid,
     });
 
     req.session.save(() => {
