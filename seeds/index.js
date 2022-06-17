@@ -1,30 +1,31 @@
 const { User } = require('../models');
 
+//create some users to test things out
 const userData = [
     {
-        "username": "T-swift",
+        "username": "~T-swift-cutie~",
         "password": "1234",
         "email": "ted@ted.com"
     },
     {
-        "username": "T-swift",
+        "username": "o0Cool-Hand-DEEzines0o",
         "password": "1234",
-        "email": "ted@ted.com"
+        "email": "luke@luke.com"
     },
     {
-        "username": "T-swift",
+        "username": "xXJaRODXx",
         "password": "1234",
-        "email": "ted@ted.com"
+        "email": "jarryod@jarryod.com"
     },
     {
-        "username": "T-swift",
+        "username": "J_Tal-montana",
         "password": "1234",
-        "email": "ted@ted.com"
+        "email": "jason@jason.com"
     },
     {
-        "username": "T-swift",
+        "username": "A-Pie_inTheSky",
         "password": "1234",
-        "email": "ted@ted.com"
+        "email": "andy@andy.com"
     }
 ];
 
