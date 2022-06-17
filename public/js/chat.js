@@ -1,19 +1,52 @@
+
 const messageBox = document.getElementById("message-thread")
+const sendBtn = document.getElementById("submit")
+const chat = document.getElementById('chat')
 
-const socket = io();
+function addSocket(){
+    if (socket.connected){
+        console.log('socket connected adding listener')
+        socket.on('message', message => {
+            console.log("chat.js", message);
+            messageBox.innerHTML += `<p>${message}</p>`
+        })
+    } else {
+        console.log('no socket trying again')
+        setTimeout(() => {
+           addSocket() 
+        }, 500);
+    }
+}
 
-socket.on('message', message => {
-    console.log(message);
-})
+addSocket()
 
+fetch("/api/messages", { method: "GET" })
+    .then(data => data.json())
+    .then(res => {
+        console.log(res)
+        res.forEach(element => {
+            messageBox.innerHTML += `<p>${element.body}</p>`
+        });
+    })
+    .catch(err => console.log('err', err))
 //Message form submission
-messageBox.addEventListener('submit', (event) => {
+sendBtn.addEventListener('click', (event) => {
+    console.log(socket)
     event.preventDefault();
 
     //Get message text
-    const chat = event.target.elements.chat.value;
+    // const chatData = messageBox.value
+    // const chatMessage = JSON.stringify(chatData)
 
-    //Emite mesage to the server
-    console.log(chat)
-    socket.emit('chatMessage', chat)
-}) 
+    //Emit mesage to the server
+    console.log(chat.value)
+    socket.emit('message', chat.value)
+    fetch("/api/messages", {
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }, method: "POST", body: JSON.stringify({ body: chat.value })
+    })
+        .catch(err => console.log('err', err))
+})
+// }

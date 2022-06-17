@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User, Messages } = require("../models");
 
 //create some users to test things out
 const userData = [
@@ -29,6 +29,15 @@ const userData = [
   },
 ];
 
+const messageData = [
+  {
+    body: "saDFGASDFGASFGKJAH",
+  }
+];
+
 const seedUser = () => User.bulkCreate(userData);
+const seedMessage = () => Messages.bulkCreate(messageData);
 
 seedUser();
+
+seedMessage();
