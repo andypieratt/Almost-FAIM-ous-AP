@@ -24,39 +24,24 @@
             <figcaption>Andy</figcaption>
         </div>
     </div>
-
-<div class="container browser-frame center">
-    <div id="drag-handle"></div>
-    <main class="content">
-        <div class="couldnt-do-this-in-the-90s">
-            <h1>LOGIN</h1>
-        </div>
-        <p>Throwback 90's style instant messaging!</p>
-
-        <form id="login-form">
-            <!-- Email input -->
+    
+    <div class="container browser-frame center">
+        <div id="drag-handle"></div>
+        
+        <main>
+        <span>You're chatting with </span>
+            <div class="chat"> 
+                {{!-- RENDER CHATS HERE --}}
+            </div>
             <div>
-                <input id="" class="form-group-input" type="" /><br>
-                <label class="form-label" for="form2Example1">Username</label>
+                <textarea name="chat"></textarea>
             </div>
-
-            <!-- Password input -->
-            <div class="form-group-input">
-                <input type="password" id="password" class="form-control" /><br>
-                <label class="form-label" for="form2Example2">Password</label>
-            </div>
-
-            <!-- Submit button -->
-            <button type="submit" id="submit-button" class="btn btn-info">Sign in</button>
+            <!-- Send button -->
+            <button type="button" id="btn-send" class="btn btn-info">Send</button>
             <div class="text-center">
-
+                
             </div>
-            <!-- Register buttons -->
-            <div class="text-center">
-                <p>Not a member? <button type="button" class="btn btn-info"><a href="/register">Register</a> </button></p>
-            </div>
-        </form>
-
-    </main>
-
-</div>
+        </main>
+    
+    <script src="/js/login.js"></script>
+    </div>

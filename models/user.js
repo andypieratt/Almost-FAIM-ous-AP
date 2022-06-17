@@ -29,10 +29,10 @@ User.init(
         len: [4],
       },
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    // email: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    // },
     uuid: {
       type: DataTypes.UUID,
       allowNull: false,

@@ -3,23 +3,23 @@ const loginFormHandler = async function (event) {
   event.preventDefault();
 
   // const usernameEL = document.querySelector('#username');
-  const emailEl = document.querySelector('#email');
-  const passwordEl = document.querySelector('#password');
+  const emailEl = document.querySelector('#email').value.trim();
+  const passwordEl = document.querySelector('#password').value.trim();
   
   function displayMessage(){
     console.log({email, passwordEl})
     if(!emailEl.value || !passwordEl.value){
       alert("Required fields cannot be blank")
     } else {
-      alert("Login Succesful!")
+      alert("Login Successful!")
     }
   }
 
-  const response = fetch('/api/user/login', {
+  const response = fetch('/api/users/login', {
     method: 'POST',
     body: JSON.stringify({
-      email: emailEl.value,
-      password: passwordEl.value,
+      username: emailEl,
+      password: passwordEl,
       // username: usernameEL.value,
     }),
     headers: { 'Content-Type': 'application/json' },
@@ -32,8 +32,8 @@ const loginFormHandler = async function (event) {
   //   displayMessage("error", "Password cannot be blank");
   //  }
  
-  displayMessage()
-
+  // displayMessage()
+console.log(response);
   if (response.ok) {
       console.log("SUCCESS")
         document.location.replace('/chat');
@@ -43,8 +43,8 @@ const loginFormHandler = async function (event) {
   };
 
 document
-  .querySelector('#submit-button')
-  .addEventListener('click', loginFormHandler);
+  .querySelector('#login-form')
+  .addEventListener('submit', loginFormHandler);
 
 // document
 //   .querySelector('#register-button')
