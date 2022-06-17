@@ -1,3 +1,4 @@
+
 const messageBox = document.getElementById("message-thread")
 const sendBtn = document.getElementById("submit")
 const chat = document.getElementById('chat').value
