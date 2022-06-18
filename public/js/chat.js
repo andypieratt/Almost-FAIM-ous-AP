@@ -18,6 +18,7 @@ function addSocket() {
 }
 
 addSocket();
+focusMethod();
 
 fetch("/api/messages", { method: "GET" })
   .then((data) => data.json())
@@ -34,6 +35,7 @@ sendBtn.addEventListener("click", () => {
   window.setTimeout(function () {
     window.location.reload();
   }, 1);
+  messageBox.scrollTop = messageBox.scrollHeight;
 
   //Get message text
   // const chatData = messageBox.value
@@ -52,3 +54,7 @@ sendBtn.addEventListener("click", () => {
   }).catch((err) => console.log("err", err));
 });
 // }
+
+function focusMethod() {
+  chat.focus();
+}
