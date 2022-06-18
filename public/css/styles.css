@@ -103,6 +103,8 @@ main {
     height: 50%;
     margin-bottom: 5rem;
     margin: 5%;
+    overflow: scroll;
+    color: blue;
 }
 
 .btn-info {
