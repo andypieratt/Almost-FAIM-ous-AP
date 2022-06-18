@@ -94,15 +94,19 @@ main {
 }
 
 .chat {
-    /* display: flex;
+  /* display: flex;
     justify-content: center;
     align-items:center;
     float: inline-end; */
-    border-style: inset;
-    border: 5px, black;
-    height: 50%;
-    margin-bottom: 5rem;
-    margin: 5%;
+  overflow: auto;
+  hyphens: auto;
+  text-align: left;
+  border-style: inset;
+  padding-left: 5px;
+  border: 5px, black;
+  height: 50%;
+  margin-bottom: 5rem;
+  margin: 5%;
 }
 
 .btn-info {
