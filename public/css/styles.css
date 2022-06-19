@@ -93,6 +93,29 @@ main {
   /* text-transform: uppercase; */
 }
 
+.logout-container{
+  display: flex;
+  padding-left: 1em;
+}
+
+
+.logout {
+  justify-content: start;
+  text-align: center;
+  color: #ffffff;
+    background-color: #c0c0c0;
+    border-color: #c0c0c0;
+    font-family: 'Windows 95', cursive;
+}
+
+
+.logout:hover {
+  color: #ffffff;
+  background-color: #787878;
+  border-color: #787878;
+}
+
+
 .chat {
     /* display: flex;
     justify-content: center;
