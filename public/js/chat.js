@@ -2,11 +2,19 @@ const messageBox = document.getElementById("message-thread");
 const sendBtn = document.getElementById("submit");
 const chat = document.getElementById("chat");
 const userName = document.getElementById("user-name");
+const mainContainer = document.getElementById("main-container");
 
+window.onload = function () {
+  window.scrollTo(0, Number.POSITIVE_INFINITY);
+};
+
+window.onload();
+// mainContainer.addEventListener("DOMContentLoaded", function (event) {
+//   window.scrollTo(0, document.body.scrollHeight);
+// });
 // const socket = io();
-
 // Join chatroom
-socket.emit('joinRoom', { userName, room:'default' });
+socket.emit("joinRoom", { room: "default" });
 
 // // Get room and users
 // socket.on('roomUsers', ({ room, users }) => {
@@ -51,9 +59,14 @@ fetch("/api/messages", { method: "GET" })
   .then((data) => data.json())
   .then((res) => {
     console.log(res);
-    // res.forEach((element) => {
-    //   messageBox.innerHTML += `<p>${element.body}</p>`;
-    // });
+    res.forEach((element) => {
+      const div = document.createElement("div");
+      const message = element.body;
+      div.textContent = `$: ${message}`;
+      document.getElementById("message-thread").append(div);
+      chat.value = "";
+      focusMethod();
+    });
   })
   .catch((err) => console.log("err", err));
 
@@ -71,13 +84,12 @@ fetch("/api/user/", { method: "GET" })
 
 //Message form submission
 sendBtn.addEventListener("click", () => {
-  messageBox.scrollTop = messageBox.scrollHeight;
   console.log(socket);
   // window.setTimeout(function () {
   //   window.location.reload();
   // }, 1);
-  const message = chat.value;
-  displayMessage(message);
+  // const message = chat.value;
+  // displayMessage(message);
 
   //Get message text
   // const chatData = messageBox.value
@@ -85,7 +97,6 @@ sendBtn.addEventListener("click", () => {
 
   //Emit mesage to the server
   console.log(chat.value);
-  socket.emit('chatMessage',message);
   // socket.emit("message", chat.value);
   fetch("/api/messages", {
     headers: {
@@ -97,8 +108,30 @@ sendBtn.addEventListener("click", () => {
   }).catch((err) => console.log("err", err));
   chat.value = "";
   focusMethod();
+
+  fetch("/api/messages", { method: "GET" })
+    .then((data) => data.json())
+    .then((res) => {
+      console.log(res);
+      res.forEach((element) => {
+        const div = document.createElement("div");
+        const message = element.body;
+        div.textContent = `$: ${message}`;
+        document.getElementById("message-thread").append(div);
+        chat.value = "";
+        focusMethod();
+        messageBox.scrollTop = messageBox.scrollHeight;
+        // element.forEach((message) => {
+        //   socket.broadcast("chatMessage", message);
+        // });
+      });
+    })
+    .catch((err) => console.log("err", err));
 });
 // }
+socket.on("send-message", (messageBox) => {
+  socket.broadcast.emit("recieve-message", messageBox);
+});
 
 sendBtn.addEventListener("keypress", function (event) {
   if (event.code === "Enter") {
