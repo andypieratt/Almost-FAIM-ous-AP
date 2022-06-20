@@ -1,6 +1,9 @@
 const messageBox = document.getElementById("#message-thread")
-const chattingWith = document.getElementById("#chatting-with")
+// const chattingWith = document.getElementById("#chatting-with")
 const socket = io();
+
+// const chatter = `${chattingWith}`
+
 
 socket.on('message', message => {
     console.log(message);
