@@ -1,7 +1,7 @@
 //VARIABLES
 const path = require("path");
 const express = require("express");
-const http = require('http');
+// const http = require('http');
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
@@ -9,8 +9,10 @@ const helpers = require("./utils/helper.js");
 const sequelize = require("./config/connection");
 // const socket = require("socket.io")
 const app = express();
-const server = http.createServer(app);
-const { Server } = require("socket.io");
+// const server = http.createServer(app);
+// const { Server } = require("socket.io");
+const http = require('http').Server(app)
+const io = require('socket.io')(http)
 const formatMessage = require('./utils/messages');
 const {
   userJoin,
@@ -23,7 +25,7 @@ const {
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 // let globalSocket = null
-const io = new Server(server);
+// const io = new Server(server);
 // const io = socket()
 const PORT = process.env.PORT || 3001;
 
@@ -32,13 +34,21 @@ const botName= "FaimBot"
 //run when user login
 // Run when client connects
 io.on('connection', socket => {
+  socket.on('check-user', () => {
+    console.log('check user:')
+    socket.emit('set-user', session.Store)
+})
+  socket.on("message", (payload) => {
+    socket.broadcast.emit("message", payload)
+    console.log("server received message", payload)
+  })
   socket.on('joinRoom', ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
 
     socket.join(user.room);
 
     // Welcome current user
-    socket.emit('message', formatMessage(botName, 'Welcome to ChatCord!'));
+    socket.emit('message', formatMessage(botName, 'Welcome to fAIM!'));
 
     // Broadcast when a user connects
     socket.broadcast
@@ -105,10 +115,14 @@ app.set("view engine", "handlebars");
 
 app.use(session(sess));
 app.use(routes);
+app.get("/check-user", (req, res)=>{
+  console.log(req.session)
+  res.status(200).json({username: req.session.username})
+})
 
 //LISTENING
 sequelize.sync({ force: false }).then(() => {
-  server.listen(PORT, () =>
+  http.listen(PORT, () =>
     console.log(`Now listening http://localhost:${PORT}/`)
   );
 });
