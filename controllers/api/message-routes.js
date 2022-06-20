@@ -35,5 +35,20 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/delete", async (req, res) => {
+  try {
+    const msgData = await Messages.destroy({
+      where: {}
+    });
+    // const msgData = await Messages.findAll({
+    //   include: [{ model: User }, { model: Convos }],
+    // });
+    res.status(200).json(msgData);
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err);
+  }
+});
+
 //Exports
 module.exports = router;

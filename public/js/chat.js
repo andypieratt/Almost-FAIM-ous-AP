@@ -1,14 +1,38 @@
+const socket = window.socket
 const messageBox = document.getElementById("message-thread");
 const sendBtn = document.getElementById("submit");
 const chat = document.getElementById("chat");
 const userName = document.getElementById("user-name");
 const mainContainer = document.getElementById("main-container");
 
-window.onload = function () {
-  window.scrollTo(0, Number.POSITIVE_INFINITY);
-};
+// window.scrollTo(0, Number.POSITIVE_INFINITY);
+addSocket();
+focusMethod();
 
-window.onload();
+function addToChat(user, msg) {
+    const div = document.createElement("div");
+    div.textContent = `${user}: ${msg}`;
+    messageBox.append(div);
+    messageBox.scrollTo(0, messageBox.scrollHeight);
+    // chat.value = "";
+  }
+
+function init() {
+    window.scrollTo(0, document.body.scrollHeight);
+    focusMethod();
+    console.log("socket", socket)
+    socket.on("send-message", (messageBox) => {
+        socket.broadcast.emit("recieve-message", messageBox);
+    });
+    
+    socket.on("message", (payload) => {
+        console.log("message from socket", payload)
+    }) 
+    socket.emit("message", "test message")  
+  }
+window.onload = addSocket
+
+// window.onload();
 // mainContainer.addEventListener("DOMContentLoaded", function (event) {
 //   window.scrollTo(0, document.body.scrollHeight);
 // });
@@ -44,6 +68,7 @@ function addSocket() {
       console.log("chat.js", message);
       messageBox.innerHTML += `<p>${message}</p>`;
     });
+    init()
   } else {
     console.log("no socket trying again");
     setTimeout(() => {
@@ -52,21 +77,20 @@ function addSocket() {
   }
 }
 
-addSocket();
-focusMethod();
 
 fetch("/api/messages", { method: "GET" })
   .then((data) => data.json())
   .then((res) => {
     console.log(res);
     res.forEach((element) => {
-      const div = document.createElement("div");
-      const message = element.body;
-      div.textContent = `$: ${message}`;
-      document.getElementById("message-thread").append(div);
-      chat.value = "";
-      focusMethod();
-    });
+    //   const div = document.createElement("div");
+    //   const message = element.body;
+    //   div.textContent = `$: ${message}`;
+    //   document.getElementById("message-thread").append(div);
+    addToChat("fetch", element.body)
+});
+chat.value = "";
+focusMethod();
   })
   .catch((err) => console.log("err", err));
 
@@ -87,6 +111,8 @@ fetch("/api/convos/", { method: "GET" })
   .then((res) => {
     console.log(res);
   });
+
+
 //Message form submission
 sendBtn.addEventListener("click", () => {
   console.log(socket);
@@ -101,7 +127,7 @@ sendBtn.addEventListener("click", () => {
   // const chatMessage = JSON.stringify(chatData)
 
   //Emit mesage to the server
-  console.log(chat.value);
+  //console.log(chat.value);
   // socket.emit("message", chat.value);
   fetch("/api/messages", {
     headers: {
@@ -111,35 +137,44 @@ sendBtn.addEventListener("click", () => {
     method: "POST",
     body: JSON.stringify({ body: chat.value }),
   }).catch((err) => console.log("err", err));
-  chat.value = "";
   focusMethod();
-
-  fetch("/api/messages", { method: "GET" })
-    .then((data) => data.json())
-    .then((res) => {
-      console.log(res);
-      res.forEach((element) => {
-        const div = document.createElement("div");
-        const message = element.body;
-        div.textContent = `$: ${message}`;
-        document.getElementById("message-thread").append(div);
-        chat.value = "";
-        focusMethod();
-        messageBox.scrollTop = messageBox.scrollHeight;
-        // element.forEach((message) => {
-        //   socket.broadcast("chatMessage", message);
-        // });
-      });
+  addToChat("Ted", chat.value)
+  socket.emit("message", {
+      user: "Ted",
+      message: chat.value
     })
-    .catch((err) => console.log("err", err));
+    chat.value = "";
+
+//   fetch("/api/messages", { method: "GET" })
+//     .then((data) => data.json())
+//     .then((res) => {
+//       console.log(res);
+//       res.forEach((element) => {
+//         const div = document.createElement("div");
+//         const message = element.body;
+//         div.textContent = `$: ${message}`;
+//         document.getElementById("message-thread").append(div);
+//         chat.value = "";
+//         focusMethod();
+//         messageBox.scrollTop = messageBox.scrollHeight;
+//         // element.forEach((message) => {
+//         //   socket.broadcast("chatMessage", message);
+//         // });
+//       });
+//     })
+//     .catch((err) => console.log("err", err));
 });
-// }
-socket.on("send-message", (messageBox) => {
-  socket.broadcast.emit("recieve-message", messageBox);
-});
+// // }
+// socket.on("send-message", (messageBox) => {
+//   socket.broadcast.emit("recieve-message", messageBox);
+// });
+
+// socket.on("message", (payload) => {
+//     console.log("message from socket", payload)
+// })
 
 sendBtn.addEventListener("keypress", function (event) {
-  if (event.code === "Enter") {
+  if (event.key === "Enter") {
     messageBox.scrollTop = messageBox.scrollHeight;
     // window.setTimeout(function () {
     //   window.location.reload();
