@@ -1,7 +1,6 @@
 //VARIABLES
 const path = require("path");
 const express = require("express");
-const app = express();
 const http = require('http');
 const session = require("express-session");
 const exphbs = require("express-handlebars");
@@ -9,43 +8,78 @@ const routes = require("./controllers");
 const helpers = require("./utils/helper.js");
 const sequelize = require("./config/connection");
 // const socket = require("socket.io")
+const app = express();
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+const formatMessage = require('./utils/messages');
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers
+} = require('./utils/users');
 // const setupListeners = require("./public/js/chat.js")
 
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-let globalSocket = null
+// let globalSocket = null
 const io = new Server(server);
 // const io = socket()
 const PORT = process.env.PORT || 3001;
 
+const botName= "FaimBot"
+
 //run when user login
-// io.on('connected', socket => {
-//   console.log("New server connection")
+// Run when client connects
+io.on('connection', socket => {
+  socket.on('joinRoom', ({ username, room }) => {
+    const user = userJoin(socket.id, username, room);
 
-//On new user join
-io.on('connection', (socket) => {
-  console.log('a user connected');
-  // setupListeners(socket)
-  globalSocket = socket
+    socket.join(user.room);
 
-  //Welcome user message
-  socket.emit('message', 'Welcome to fAIM!')
+    // Welcome current user
+    socket.emit('message', formatMessage(botName, 'Welcome to ChatCord!'));
 
-  //Let users know when other user connects
-  socket.broadcast.emit('message', 'Another user has joined the chat');
+    // Broadcast when a user connects
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        'message',
+        formatMessage(botName, `${user.username} has joined the chat`)
+      );
 
-  //Run on user logout
+    // Send users and room info
+    io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
+    });
+  });
+
+  // Listen for chatMessage
+  socket.on('chatMessage', msg => {
+    const user = getCurrentUser(socket.id);
+
+    io.to(user.room).emit('message', formatMessage(user.username, msg));
+  });
+
+  // Runs when client disconnects
   socket.on('disconnect', () => {
-    io.emit('message', 'A user has left the chat')
+    const user = userLeave(socket.id);
 
-  })
-  //Listen for message
-  socket.on('message', (chat) => {
-    console.log(chat);
-  })
-})
+    if (user) {
+      io.to(user.room).emit(
+        'message',
+        formatMessage(botName, `${user.username} has left the chat`)
+      );
+
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: getRoomUsers(user.room)
+      });
+    }
+  });
+});
 
 const hbs = exphbs.create({ helpers });
 
@@ -79,4 +113,4 @@ sequelize.sync({ force: false }).then(() => {
   );
 });
 
-module.exports = globalSocket
+// module.exports = globalSocket

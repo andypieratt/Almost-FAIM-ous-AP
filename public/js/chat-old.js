@@ -3,36 +3,10 @@ const sendBtn = document.getElementById("submit");
 const chat = document.getElementById("chat");
 const userName = document.getElementById("user-name");
 
-// const socket = io();
-
-// Join chatroom
-socket.emit('joinRoom', { userName, room:'default' });
-
-// // Get room and users
-// socket.on('roomUsers', ({ room, users }) => {
-//   outputRoomName(room);
-//   outputUsers(users);
-// });
-
-// // Add room name to DOM
-// function outputRoomName(room) {
-//   roomName.innerText = room;
-// }
-
-// // Add users to DOM
-// function outputUsers(users) {
-//   userList.innerHTML = '';
-//   users.forEach((user) => {
-//     const li = document.createElement('li');
-//     li.innerText = user.username;
-//     userList.appendChild(li);
-//   });
-// }
-
 function addSocket() {
   if (socket.connected) {
     console.log("socket connected adding listener");
-    socket.on("chatMessage", (message) => {
+    socket.on("message", (message) => {
       console.log("chat.js", message);
       messageBox.innerHTML += `<p>${message}</p>`;
     });
@@ -85,8 +59,7 @@ sendBtn.addEventListener("click", () => {
 
   //Emit mesage to the server
   console.log(chat.value);
-  socket.emit('chatMessage',message);
-  // socket.emit("message", chat.value);
+  socket.emit("message", chat.value);
   fetch("/api/messages", {
     headers: {
       Accept: "application/json",
