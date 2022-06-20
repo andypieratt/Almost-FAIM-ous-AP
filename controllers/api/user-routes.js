@@ -29,6 +29,15 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get("/login-data", async (req, res) => {
+  const user = await User.findAll({
+    where: {
+      loggedIn: true,
+    },
+  });
+  res.status(200).json(user);
+});
+
 router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({
