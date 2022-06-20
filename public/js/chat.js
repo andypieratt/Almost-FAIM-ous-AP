@@ -1,7 +1,7 @@
 const messageBox = document.getElementById("message-thread");
 const sendBtn = document.getElementById("submit");
 const chat = document.getElementById("chat");
-const userName = document.getElementById("user-name")
+const userName = document.getElementById("user-name");
 
 function addSocket() {
   if (socket.connected) {
@@ -37,18 +37,18 @@ fetch("/api/user", { method: "GET" })
     console.log(res);
     res.forEach((user) => {
       userName.innerHTML += `<h5>You're chatting with:</h5> <h4>${user.username}</h4>`;
-      console.log(element)
+      console.log(element);
     });
   })
   .catch((err) => console.log("err", err));
 
 //Message form submission
 sendBtn.addEventListener("click", () => {
+  messageBox.scrollTop = messageBox.scrollHeight;
   console.log(socket);
   window.setTimeout(function () {
     window.location.reload();
   }, 1);
-  messageBox.scrollTop = messageBox.scrollHeight;
 
   //Get message text
   // const chatData = messageBox.value

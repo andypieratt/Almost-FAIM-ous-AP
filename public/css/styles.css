@@ -121,6 +121,8 @@ main {
     justify-content: center;
     align-items:center;
     float: inline-end; */
+    display: flex;
+    flex-direction: column;
     border-style: inset;
     border: 5px, black;
     height: 50%;
