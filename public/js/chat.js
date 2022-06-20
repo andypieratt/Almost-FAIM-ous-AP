@@ -82,6 +82,11 @@ fetch("/api/user/", { method: "GET" })
   })
   .catch((err) => console.log("err", err));
 
+fetch("/api/convos/", { method: "GET" })
+  .then((data) => data.json())
+  .then((res) => {
+    console.log(res);
+  });
 //Message form submission
 sendBtn.addEventListener("click", () => {
   console.log(socket);
