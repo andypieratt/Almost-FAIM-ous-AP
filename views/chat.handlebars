@@ -1,3 +1,7 @@
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  var socket = io();
+</script>
 <div class="desktop-icons">
         <div><a href="https://github.com/ruxpin86"><img src="/images/computericon.png" alt="desktop icon"
                     class="img-icon"></a>
@@ -25,25 +29,27 @@
         </div>
     </div>
     
-    <div class="container browser-frame center">
+    <div class="container browser-frame center" id="main-container">
         <div id="drag-handle"></div>
         
         <main>
-        <span id="chatting-with" >You're chatting with  </span>
-            <div class="chat"> 
+            <div class="logout-container"><button class="logout" id="logout-btn">Logout</button></div>
+        <span id="user-name"></span>
+            <div id="message-thread" class="chat"> 
+
                 {{!-- RENDER CHATS HERE --}}
             </div>
             <div>
-                <textarea name="chat"></textarea>
+                <textarea id="chat" name="chat" placeholder="Enter message..."></textarea>
             </div>
             <!-- Send button -->
-            <button type="button" id="btn-send" class="btn btn-info">Send</button>
+            <button type="submit" id="submit" class="btn btn-info">Send</button>
             <div class="text-center">
                 
             </div>
         </main>
     
-  
-    
-    </div>  <script src="/js/chat.js"></script>
-    <img class="footer" src="/images/start-bar.png" alt="start-bar">
+    <script src="/js/chat.js"></script>
+    <script src="/js/logout.js"></script>
+    </div>
+ <img class="footer" src="/images/start-bar.png" alt="start-bar">
