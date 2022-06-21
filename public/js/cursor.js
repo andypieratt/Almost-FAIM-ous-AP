@@ -1,4 +1,4 @@
-var str_pathToImageFolder = "./public/images/";
+var str_pathToImageFolder = "./images/";
 
 var arr_banana = ["Unavailable_FRAME01.png", "Unavailable_FRAME02.png", "Unavailable_FRAME03.png", "Unavailable_FRAME04.png", "Unavailable_FRAME05.png", "Unavailable_FRAME06.png", "Unavailable_FRAME07.png", "Unavailable_FRAME08.png", "Unavailable_FRAME09.png", "Unavailable_FRAME010.png", "Unavailable_FRAME011.png", "Unavailable_FRAME012.png", "Unavailable_FRAME013.png", "Unavailable_FRAME014.png", "Unavailable_FRAME015.png"];
 
