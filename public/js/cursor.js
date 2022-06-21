@@ -1,4 +1,4 @@
-var str_pathToImageFolder = "./images/";
+var str_pathToImageFolder = "/images/";
 
 var arr_banana = ["Unavailable_FRAME01.png", "Unavailable_FRAME02.png", "Unavailable_FRAME03.png", "Unavailable_FRAME04.png", "Unavailable_FRAME05.png", "Unavailable_FRAME06.png", "Unavailable_FRAME07.png", "Unavailable_FRAME08.png", "Unavailable_FRAME09.png", "Unavailable_FRAME010.png", "Unavailable_FRAME011.png", "Unavailable_FRAME012.png", "Unavailable_FRAME013.png", "Unavailable_FRAME014.png", "Unavailable_FRAME015.png"];
 
@@ -6,7 +6,7 @@ var arr_dino = ["Dino_FRAME01.png", "Dino_FRAME02.png", "Dino_FRAME03.png", "Din
 
 var arr_hand = ["TextSelect.png"];
 
-var arr_horse = ["Horse_Frame01.png", "Horse_Frame02.png", "Horse_Frame03.png", "Horse_Frame04.png", "Horse_Frame05.png", "Horse_Frame06.png", "Horse_Frame07.png", "Horse_Frame08.png", "Horse_Frame09.png", "Horse_Frame10.png", "Horse_Frame11.png", "Horse_Frame12.png", "Horse_Frame13.png", "Horse_Frame14.png", "Horse_Frame15.png", "Horse_Frame16.png", "Horse_Frame17.png", "Horse_Frame18.png", "Horse_Frame19.png", "Horse_Frame20.png", "Horse_Frame21.png", "Horse_Frame22.png", "Horse_Frame23.png", "Horse_Frame24.png",];
+var arr_horse = ["Horse_FRAME01.png", "Horse_FRAME02.png", "Horse_FRAME03.png", "Horse_FRAME04.png", "Horse_FRAME05.png", "Horse_FRAME06.png", "Horse_FRAME07.png", "Horse_FRAME08.png", "Horse_FRAME09.png", "Horse_FRAME10.png", "Horse_FRAME11.png", "Horse_FRAME12.png", "Horse_FRAME13.png", "Horse_FRAME14.png", "Horse_FRAME15.png", "Horse_FRAME16.png", "Horse_FRAME17.png", "Horse_FRAME18.png", "Horse_FRAME19.png", "Horse_FRAME20.png", "Horse_FRAME21.png", "Horse_FRAME22.png", "Horse_FRAME23.png", "Horse_FRAME24.png",];
 
 var arr_party = ["partygirl-frame1.png", "partygirl-frame2.png", "partygirl-frame3.png", "partygirl-frame4.png", "partygirl-frame5.png", "partygirl-frame6.png", "partygirl-frame7.png", "partygirl-frame8.png", "partygirl-frame9.png", "partygirl-frame10.png", "partygirl-frame11.png", "partygirl-frame12.png"]
 
