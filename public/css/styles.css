@@ -103,7 +103,7 @@ main {
   justify-content: start;
   text-align: center;
   color: #ffffff;
-    background-color: #c0c0c0;
+    background-color: #ff5858;
     border-color: #c0c0c0;
     font-family: 'Windows 95', cursive;
 }
@@ -111,7 +111,7 @@ main {
 
 .logout:hover {
   color: #ffffff;
-  background-color: #787878;
+  background-color: #900000;
   border-color: #787878;
 }
 
