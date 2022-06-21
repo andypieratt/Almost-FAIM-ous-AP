@@ -8,6 +8,8 @@ var arr_hand = ["TextSelect.png"];
 
 var arr_horse = ["Horse_Frame01.png", "Horse_Frame02.png", "Horse_Frame03.png", "Horse_Frame04.png", "Horse_Frame05.png", "Horse_Frame06.png", "Horse_Frame07.png", "Horse_Frame08.png", "Horse_Frame09.png", "Horse_Frame10.png", "Horse_Frame11.png", "Horse_Frame12.png", "Horse_Frame13.png", "Horse_Frame14.png", "Horse_Frame15.png", "Horse_Frame16.png", "Horse_Frame17.png", "Horse_Frame18.png", "Horse_Frame19.png", "Horse_Frame20.png", "Horse_Frame21.png", "Horse_Frame22.png", "Horse_Frame23.png", "Horse_Frame24.png",];
 
+var arr_party = ["partygirl-frame1.png", "partygirl-frame2.png", "partygirl-frame3.png", "partygirl-frame4.png", "partygirl-frame5.png", "partygirl-frame6.png", "partygirl-frame7.png", "partygirl-frame8.png", "partygirl-frame9.png", "partygirl-frame10.png", "partygirl-frame11.png", "partygirl-frame12.png"]
+
 
 var int_cursorAnimationInterval;//animation interval id
 var num_cursorAnimationFrame = 0;//the animation frame (counts through arrays)
@@ -87,6 +89,10 @@ function horse(str_tag) {
     animateCursorForElement(arr_horse, str_tag);
 }
 
+function party(str_tag) {
+    animateCursorForElement(arr_party, str_tag);
+}
+
 
 
 
@@ -106,5 +112,7 @@ window.addEventListener("load", function () {
     dino("img");
     hand("input");
     horse("button");
+    party("textarea");
+
 
 });
