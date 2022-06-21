@@ -49,3 +49,10 @@ el.btn.addEventListener("click", () => {
   el.box.scrollTop = el.box.scrollHeight;
   el.input.focus()
 });
+
+el.input.addEventListener("keypress", (e) =>{
+    if(e.key === "Enter"){
+    e.preventDefault()
+    el.btn.click()
+    }
+})
