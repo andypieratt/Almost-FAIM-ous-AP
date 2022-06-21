@@ -47,4 +47,5 @@ el.btn.addEventListener("click", () => {
   socket.emit("message", { msg: el.input.value, user: currentUser });
   el.input.value = "";
   el.box.scrollTop = el.box.scrollHeight;
+  el.input.focus()
 });
