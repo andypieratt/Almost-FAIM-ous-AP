@@ -30,6 +30,7 @@ const el = {
 socket.on("message", (payload) => {
   // console.log('user got msg:', msg)
   el.box.innerHTML += `<p class="incoming-user">${payload.user}: ${payload.msg}</p>`;
+  el.box.scrollTop = el.box.scrollHeight;
 });
 
 el.btn.addEventListener("click", () => {
