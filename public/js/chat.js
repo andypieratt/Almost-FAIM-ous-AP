@@ -1,3 +1,5 @@
+//USED FOR REFERENCE TO REFACTOR INTO nuchat.js
+
 const socket = window.socket
 const messageBox = document.getElementById("message-thread");
 const sendBtn = document.getElementById("submit");
