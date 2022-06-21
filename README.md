@@ -22,6 +22,12 @@ Do you contantly find yourself being overwhelmed with today's social media? Are 
 
 ## Usage
 
+
+
+https://user-images.githubusercontent.com/104233323/174828093-173d6df8-00e9-4d80-b011-11fa4d633ade.mp4
+
+
+
 ```m
 WHEN the user enters the app
 THEN they are met with a window that prompts them for a username and password or to register
