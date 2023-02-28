@@ -20,8 +20,6 @@ const {
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-const PORT = process.env.PORT || 3001;
-
 const botName = "FaimBot";
 
 //run when user login
@@ -110,7 +108,13 @@ app.get("/check-user", (req, res) => {
 
 //LISTENING
 sequelize.sync({ force: false }).then(() => {
-  http.listen(PORT, () =>
-    console.log(`Now listening http://localhost:${PORT}/`)
+  http.listen(
+    app.listen(process.env.PORT || 3000, () => {
+      console.log(
+        "Express server listening on port %d in %s mode",
+        this.address().port,
+        app.settings.env
+      );
+    })
   );
 });
