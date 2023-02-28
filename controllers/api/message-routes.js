@@ -7,24 +7,18 @@ const { Messages, Convos, User } = require("../../models");
 router.get("/", async (req, res) => {
   try {
     const msgData = await Messages.findAll({
-      include: User
+      include: User,
     });
-    // const msgData = await Messages.findAll({
-    //   include: [{ model: User }, { model: Convos }],
-    // });
+
     res.status(200).json(msgData);
   } catch (err) {
-    console.log(err)
     res.status(500).json(err);
   }
 });
 
-//Get message by ID????
-
 //Create Message
 router.post("/", async (req, res) => {
   try {
-    console.log('post message', req.body)
     const newMsg = await Messages.create({
       ...req.body,
       userId: req.session.userId,
@@ -38,14 +32,10 @@ router.post("/", async (req, res) => {
 router.get("/delete", async (req, res) => {
   try {
     const msgData = await Messages.destroy({
-      where: {}
+      where: {},
     });
-    // const msgData = await Messages.findAll({
-    //   include: [{ model: User }, { model: Convos }],
-    // });
     res.status(200).json(msgData);
   } catch (err) {
-    console.log(err)
     res.status(500).json(err);
   }
 });

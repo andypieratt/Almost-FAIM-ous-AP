@@ -1,91 +1,82 @@
 //VARIABLES
 const path = require("path");
 const express = require("express");
-// const http = require('http');
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const routes = require("./controllers");
 const helpers = require("./utils/helper.js");
 const sequelize = require("./config/connection");
-// const socket = require("socket.io")
 const app = express();
-// const server = http.createServer(app);
-// const { Server } = require("socket.io");
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
-const formatMessage = require('./utils/messages');
+const http = require("http").Server(app);
+const io = require("socket.io")(http);
+const formatMessage = require("./utils/messages");
 const {
   userJoin,
   getCurrentUser,
   userLeave,
-  getRoomUsers
-} = require('./utils/users');
-// const setupListeners = require("./public/js/chat.js")
+  getRoomUsers,
+} = require("./utils/users");
 
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-// let globalSocket = null
-// const io = new Server(server);
-// const io = socket()
+
 const PORT = process.env.PORT || 3001;
 
-const botName= "FaimBot"
+const botName = "FaimBot";
 
 //run when user login
 // Run when client connects
-io.on('connection', socket => {
-  socket.on('check-user', () => {
-    console.log('check user:')
-    socket.emit('set-user', session.Store)
-})
+io.on("connection", (socket) => {
+  socket.on("check-user", () => {
+    socket.emit("set-user", session.Store);
+  });
   socket.on("message", (payload) => {
-    socket.broadcast.emit("message", payload)
-    console.log("server received message", payload)
-  })
-  socket.on('joinRoom', ({ username, room }) => {
+    socket.broadcast.emit("message", payload);
+  });
+  socket.on("joinRoom", ({ username, room }) => {
     const user = userJoin(socket.id, username, room);
 
     socket.join(user.room);
 
     // Welcome current user
-    socket.emit('message', formatMessage(botName, 'Welcome to fAIM!'));
+    socket.emit("message", formatMessage(botName, "Welcome to fAIM!"));
 
     // Broadcast when a user connects
     socket.broadcast
       .to(user.room)
       .emit(
-        'message',
+        "message",
         formatMessage(botName, `${user.username} has joined the chat`)
       );
 
     // Send users and room info
-    io.to(user.room).emit('roomUsers', {
+    io.to(user.room).emit("roomUsers", {
       room: user.room,
-      users: getRoomUsers(user.room)
+      users: getRoomUsers(user.room),
     });
   });
 
   // Listen for chatMessage
-  socket.on('chatMessage', msg => {
+  socket.on("chatMessage", (msg) => {
     const user = getCurrentUser(socket.id);
 
-    io.to(user.room).emit('message', formatMessage(user.username, msg));
+    io.to(user.room).emit("message", formatMessage(user.username, msg));
   });
 
   // Runs when client disconnects
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     const user = userLeave(socket.id);
 
     if (user) {
       io.to(user.room).emit(
-        'message',
+        "message",
         formatMessage(botName, `${user.username} has left the chat`)
       );
 
       // Send users and room info
-      io.to(user.room).emit('roomUsers', {
+      io.to(user.room).emit("roomUsers", {
         room: user.room,
-        users: getRoomUsers(user.room)
+        users: getRoomUsers(user.room),
       });
     }
   });
@@ -105,20 +96,17 @@ const sess = {
 
 //MIDDLEWARE
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json())
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
-// app.use(express.join());
-
 app.use(session(sess));
 app.use(routes);
-app.get("/check-user", (req, res)=>{
-  console.log(req.session)
-  res.status(200).json({username: req.session.username})
-})
+app.get("/check-user", (req, res) => {
+  res.status(200).json({ username: req.session.username });
+});
 
 //LISTENING
 sequelize.sync({ force: false }).then(() => {
@@ -126,5 +114,3 @@ sequelize.sync({ force: false }).then(() => {
     console.log(`Now listening http://localhost:${PORT}/`)
   );
 });
-
-// module.exports = globalSocket

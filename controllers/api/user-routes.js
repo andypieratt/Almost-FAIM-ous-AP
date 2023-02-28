@@ -24,7 +24,6 @@ router.post("/", async (req, res) => {
       res.json(newUser);
     });
   } catch (err) {
-    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -45,9 +44,6 @@ router.post("/login", async (req, res) => {
         username: req.body.username,
       },
     });
-    console.log("=============");
-    console.log(user);
-    console.log("=============");
 
     if (!user) {
       res.status(400).json({ message: "No user account found!" });
