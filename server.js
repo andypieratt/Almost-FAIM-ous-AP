@@ -111,7 +111,7 @@ sequelize.sync({ force: false }).then(() => {
   http.listen(
     app.listen(process.env.PORT || 3000, () => {
       console.log(
-        "Express server listening on port %d in %s mode",
+        "Express server listening on port %d in %s mode please",
         this.address().port,
         app.settings.env
       );
