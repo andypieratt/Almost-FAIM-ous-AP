@@ -110,11 +110,7 @@ app.get("/check-user", (req, res) => {
 
 //LISTENING
 sequelize.sync({ force: false }).then(() => {
-  http.listen(process.env.PORT || 3000, () => {
-    console.log(
-      "Express server listening on port %d in %s mode please",
-      this.address().port,
-      app.settings.env
-    );
-  });
+  http.listen(PORT, () =>
+    console.log(`Now listening http://localhost:${PORT}/`)
+  );
 });
