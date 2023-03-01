@@ -17,6 +17,8 @@ const {
   getRoomUsers,
 } = require("./utils/users");
 
+const PORT = process.env.PORT || 3001;
+
 //INTIALIZING VARIABLES
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -108,13 +110,11 @@ app.get("/check-user", (req, res) => {
 
 //LISTENING
 sequelize.sync({ force: false }).then(() => {
-  http.listen(
-    app.listen(process.env.PORT || 3000, () => {
-      console.log(
-        "Express server listening on port %d in %s mode please",
-        this.address().port,
-        app.settings.env
-      );
-    })
-  );
+  http.listen(process.env.PORT || 3000, () => {
+    console.log(
+      "Express server listening on port %d in %s mode please",
+      this.address().port,
+      app.settings.env
+    );
+  });
 });
